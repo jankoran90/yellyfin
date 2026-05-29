@@ -95,7 +95,7 @@ message HomePagePreferences{
   bool combine_continue_next = 3 [deprecated = true];
   int32 max_days_next_up = 4;
   bool click_to_play = 5;
-  bool hide_unwatched_recently_added = 6;
+  bool hide_watched_recently_added = 6;
 }
 
 enum ThemeSongVolume {

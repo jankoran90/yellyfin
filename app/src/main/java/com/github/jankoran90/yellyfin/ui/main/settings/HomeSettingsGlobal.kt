@@ -108,10 +108,10 @@ fun HomeSettingsGlobal(
             }
             item {
                 ComposablePreference(
-                    preference = AppPreference.HideUnwatchedRecentlyAdded,
-                    value = AppPreference.HideUnwatchedRecentlyAdded.getter.invoke(preferences),
+                    preference = AppPreference.HideWatchedRecentlyAdded,
+                    value = AppPreference.HideWatchedRecentlyAdded.getter.invoke(preferences),
                     onValueChange = {
-                        val newPrefs = AppPreference.HideUnwatchedRecentlyAdded.setter.invoke(preferences, it)
+                        val newPrefs = AppPreference.HideWatchedRecentlyAdded.setter.invoke(preferences, it)
                         onPreferenceChange.invoke(newPrefs)
                     },
                     onNavigate = {},

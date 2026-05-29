@@ -776,29 +776,41 @@ class HomeSettingsService
                         libraries
                             .firstOrNull { it.itemId == row.parentId }
                     val title = getRecentlyAddedTitle(library)
-                    val request =
-                        GetLatestMediaRequest(
-                            fields = SlimItemFields,
-                            imageTypeLimit = 1,
-                            parentId = row.parentId,
-                            groupItems = true,
-                            limit = limit,
-                            isPlayed = if (prefs.hideUnwatchedRecentlyAdded) true else null,
-                        )
-                    val latest =
-                        api.userLibraryApi
-                            .getLatestMedia(request)
-                            .content
-                            .map { BaseItem(it, row.viewOptions.useSeries) }
-                            .let {
-                                Success(
-                                    title,
-                                    it,
-                                    row.viewOptions,
-                                    rowType = row,
-                                )
-                            }
-                    latest
+                    val items =
+                        if (prefs.hideWatchedRecentlyAdded) {
+                            // Toggle ON: show only unwatched via GetLatestMedia
+                            api.userLibraryApi
+                                .getLatestMedia(
+                                    GetLatestMediaRequest(
+                                        fields = SlimItemFields,
+                                        imageTypeLimit = 1,
+                                        parentId = row.parentId,
+                                        groupItems = true,
+                                        limit = limit,
+                                        isPlayed = false,
+                                    ),
+                                ).content
+                                .map { BaseItem(it, row.viewOptions.useSeries) }
+                        } else {
+                            // Toggle OFF: show all (watched + unwatched) via GetItems
+                            // GetLatestMedia with isPlayed=null uses server's HidePlayedInLatest=true
+                            // which always hides watched — GetItems has no such default
+                            GetItemsRequestHandler
+                                .execute(
+                                    api,
+                                    GetItemsRequest(
+                                        parentId = row.parentId,
+                                        limit = limit,
+                                        sortBy = listOf(ItemSortBy.DATE_CREATED),
+                                        sortOrder = listOf(SortOrder.DESCENDING),
+                                        fields = SlimItemFields,
+                                        imageTypeLimit = 1,
+                                        recursive = true,
+                                    ),
+                                ).content.items
+                                .map { BaseItem(it, row.viewOptions.useSeries) }
+                        }
+                    Success(title, items, row.viewOptions, rowType = row)
                 }
 
                 is HomeRowConfig.LibraryTiles -> {

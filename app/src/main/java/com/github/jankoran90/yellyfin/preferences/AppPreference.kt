@@ -226,13 +226,13 @@ sealed interface AppPreference<Pref, T> {
                 summaryOff = R.string.continue_watching_click_summary_off,
             )
 
-        val HideUnwatchedRecentlyAdded =
+        val HideWatchedRecentlyAdded =
             AppSwitchPreference<AppPreferences>(
-                title = R.string.hide_unwatched_recently_added,
+                title = R.string.hide_watched_recently_added,
                 defaultValue = false,
-                getter = { it.homePagePreferences.hideUnwatchedRecentlyAdded },
+                getter = { it.homePagePreferences.hideWatchedRecentlyAdded },
                 setter = { prefs, value ->
-                    prefs.updateHomePagePreferences { hideUnwatchedRecentlyAdded = value }
+                    prefs.updateHomePagePreferences { hideWatchedRecentlyAdded = value }
                 },
                 summaryOn = R.string.enabled,
                 summaryOff = R.string.disabled,

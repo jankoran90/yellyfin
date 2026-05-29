@@ -1,9 +1,13 @@
+@file:OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+
 package com.github.jankoran90.yellyfin.ui.components
 
 import android.content.res.Resources
 import android.view.KeyEvent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -301,15 +305,17 @@ fun DialogPopupContent(
                     is DialogItem -> {
                         val interactionSource = remember { MutableInteractionSource() }
                         val focused by interactionSource.collectIsFocusedAsState()
+                        val itemEnabled = !waiting && item.enabled
+                        val itemOnClick = {
+                            if (dismissOnClick || item.dismissOnClick) {
+                                onDismissRequest.invoke()
+                            }
+                            item.onClick.invoke()
+                        }
                         ListItem(
                             selected = item.selected,
-                            enabled = !waiting && item.enabled,
-                            onClick = {
-                                if (dismissOnClick || item.dismissOnClick) {
-                                    onDismissRequest.invoke()
-                                }
-                                item.onClick.invoke()
-                            },
+                            enabled = itemEnabled,
+                            onClick = itemOnClick,
                             headlineContent = item.headlineContent,
                             overlineContent = item.overlineContent,
                             supportingContent = item.supportingContent,
@@ -318,6 +324,12 @@ fun DialogPopupContent(
                             interactionSource = interactionSource,
                             modifier =
                                 Modifier
+                                    .combinedClickable(
+                                        interactionSource = remember { MutableInteractionSource() },
+                                        indication = null,
+                                        enabled = itemEnabled,
+                                        onClick = itemOnClick,
+                                    )
                                     .focusRequester(focusRequesters[index])
                                     .ifElse(
                                         index == 0,

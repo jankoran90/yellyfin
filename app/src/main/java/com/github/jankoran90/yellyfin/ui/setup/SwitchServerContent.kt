@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+
 package com.github.jankoran90.yellyfin.ui.setup
 
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +13,9 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -330,7 +335,13 @@ private fun SwitchServerContentInternal(
                                         onClick = {
                                             viewModel.addServer(server.url)
                                         },
-                                        modifier = Modifier.focusRequester(focusRequester),
+                                        modifier = Modifier
+                                            .focusRequester(focusRequester)
+                                            .combinedClickable(
+                                                interactionSource = remember { MutableInteractionSource() },
+                                                indication = null,
+                                                onClick = { viewModel.addServer(server.url) },
+                                            ),
                                     )
                                 }
                             }

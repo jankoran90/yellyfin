@@ -5,6 +5,8 @@ package com.github.jankoran90.yellyfin.ui.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -40,6 +42,7 @@ import androidx.tv.material3.Text
  *
  * This allows for creating smaller and fully circular Buttons.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Button(
     onClick: () -> Unit,
@@ -86,7 +89,15 @@ fun Button(
     content: @Composable RowScope.() -> Unit,
 ) {
     Surface(
-        modifier = modifier.semantics { role = Role.Button },
+        modifier = modifier
+            .semantics { role = Role.Button }
+            .combinedClickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                enabled = enabled,
+                onClick = onClick,
+                onLongClick = onLongClick,
+            ),
         onClick = onClick,
         onLongClick = onLongClick,
         enabled = enabled,

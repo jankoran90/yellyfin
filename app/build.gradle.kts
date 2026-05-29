@@ -179,7 +179,7 @@ configure<ApplicationExtension> {
 
     sourceSets {
         getByName("main") {
-            kotlin.directories += "$buildDir/generated/seerr_api/src/main/kotlin"
+            kotlin.directories += layout.buildDirectory.dir("generated/seerr_api/src/main/kotlin").get().asFile.path
         }
     }
 
@@ -250,7 +250,7 @@ openApiGenerate {
     generatorName.set("kotlin")
     inputSpec.set("$projectDir/src/main/seerr/seerr-api.yml")
     templateDir.set("$projectDir/src/main/seerr/templates")
-    outputDir.set("$buildDir/generated/seerr_api")
+    outputDir.set(layout.buildDirectory.dir("generated/seerr_api").get().asFile.path)
     apiPackage.set("com.github.jankoran90.yellyfin.api.seerr")
     modelPackage.set("com.github.jankoran90.yellyfin.api.seerr.model")
     groupId.set("com.github.jankoran90.yellyfin.api.seerr")

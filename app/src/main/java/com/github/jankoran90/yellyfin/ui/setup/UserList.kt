@@ -90,9 +90,7 @@ fun UserList(
         ) {
             val focusRequester = remember { FocusRequester() }
             val firstFocusRequester = remember { FocusRequester() }
-            if (users.isNotEmpty()) {
-                LaunchedEffect(Unit) { focusRequester.tryRequestFocus() }
-            }
+            LaunchedEffect(Unit) { focusRequester.tryRequestFocus() }
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(24.dp), // Spacing to accommodate 20% scale
                 contentPadding = PaddingValues(horizontal = 48.dp, vertical = 16.dp), // Increased padding to accommodate 20% scale
@@ -115,6 +113,7 @@ fun UserList(
                 item {
                     AddUserCard(
                         onClick = { onAddUser.invoke() },
+                        modifier = if (users.isEmpty()) Modifier.focusRequester(firstFocusRequester) else Modifier,
                     )
                 }
             }
@@ -365,10 +364,8 @@ private fun AddUserCard(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    // Use a neutral gray color for the add user card
     val addUserColor = MaterialTheme.colorScheme.surfaceVariant
 
-    // Card dimensions - circular card (same as user cards)
     val cardSize = Cards.height2x3 * 0.75f // ~120dp
 
     Column(

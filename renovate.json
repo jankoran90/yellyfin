@@ -41,7 +41,7 @@
     {
       "groupName": "Internal dependencies",
       "matchPackageNames": [
-        "com.github.damontecres.wholphin**"
+        "com.github.jankoran90.yellyfin**"
       ],
       "enabled": false
     }

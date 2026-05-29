@@ -1,4 +1,4 @@
-# Wholphin developer's guide
+# Yellyfin developer's guide
 
 See also the [Contributing](CONTRIBUTING.md) guide for general information on contributing to the project.
 
@@ -26,7 +26,7 @@ After forking and cloning your fork, you can import the project into Android Stu
 
 ### Development environment
 
-It is recommended to use a recent version of [Android Studio](https://developer.android.com/studio). Make sure the [version is compatible](https://developer.android.com/build/releases/gradle-plugin#android_gradle_plugin_and_android_studio_compatibility) with Wholphin's AGP version.
+It is recommended to use a recent version of [Android Studio](https://developer.android.com/studio). Make sure the [version is compatible](https://developer.android.com/build/releases/gradle-plugin#android_gradle_plugin_and_android_studio_compatibility) with Yellyfin's AGP version.
 
 Code formatting should follow [ktlint's](https://github.com/pinterest/ktlint) rules. Find the `ktlint` version in [`.pre-commit-config.yaml`](./.pre-commit-config.yaml). Optionally, install the [ktlint plugin](https://plugins.jetbrains.com/plugin/15057-ktlint) in Android Studio to run automatically. Configure the version in `Settings->Tools->KtLint->Ruleset Version`.
 
@@ -36,11 +36,11 @@ Also setup [pre-commit](https://github.com/pre-commit/pre-commit) which will run
 
 #### Extensions
 
-Wholphin uses several native components for extra playback compatibility. This includes Media3 ffmpeg/av1 decoders and `libmpv`. These extensions are not required to build the app, but without them some functionality will not work.
+Yellyfin uses several native components for extra playback compatibility. This includes Media3 ffmpeg/av1 decoders and `libmpv`. These extensions are not required to build the app, but without them some functionality will not work.
 
-If you want to include these in a local build, see the [instructions here](https://github.com/damontecres/wholphin-extensions?tab=readme-ov-file#usage) for configuring the repository.
+If you want to include these in a local build, see the [instructions here](https://github.com/jankoran90/yellyfin-extensions?tab=readme-ov-file#usage) for configuring the repository.
 
-You can also build the extensions locally from https://github.com/damontecres/wholphin-extensions and include them in `app/libs`. The gradle build dependency resolution prefers these local files over fetching from the remote maven registry.
+You can also build the extensions locally from https://github.com/jankoran90/yellyfin-extensions and include them in `app/libs`. The gradle build dependency resolution prefers these local files over fetching from the remote maven registry.
 
 ## Code organization
 
@@ -64,11 +64,11 @@ These are generally settings that apply across the whole app regardless of the c
 
 The `AppPreferences` object can be retrieved from the `UserPreferencesService` or directly via injecting `DataStore<AppPreferences>`.
 
-The `AppPreference` (note the `s` differences) objects are used to create the UI for configuring settings using the composable functions in `com.github.damontecres.wholphin.ui.preferences`.
+The `AppPreference` (note the `s` differences) objects are used to create the UI for configuring settings using the composable functions in `com.github.jankoran90.yellyfin.ui.preferences`.
 
 ##### How to add a new app setting
 
-1. Add entry in `WholphinDataStore.proto` & build to generate classes
+1. Add entry in `YellyfinDataStore.proto` & build to generate classes
 2. Add new `AppPreference` object in `AppPreference.kt`
 3. Add new object to a `PreferenceGroup` (listed in `AppPreference.kt`)
 4. Update `AppPreferencesSerializer` to set the default value for new installs
@@ -77,7 +77,7 @@ The `AppPreference` (note the `s` differences) objects are used to create the UI
 
 #### Room settings
 
-These are settings were generally are applied per user. They are stored in several different tables. The entities are defined in `com.github.damontecres.wholphin.data.model`.
+These are settings were generally are applied per user. They are stored in several different tables. The entities are defined in `com.github.jankoran90.yellyfin.data.model`.
 
 Additionally, all server and user info for both Jellyfin and Seerr are stored in Room tables.
 

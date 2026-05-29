@@ -1,24 +1,24 @@
-# Wholphin - an OSS Android TV client for Jellyfin
+# Yellyfin - an OSS Android TV client for Jellyfin
 
-> "Never half-phin two jellies. Always wholphin one jelly."
+> "Never half-phin two jellies. Always yellyfin one jelly."
 
-Wholphin is an open-source Android TV client for Jellyfin. It aims to provide a different app UI that's inspired by Plex for users interested in migrating to Jellyfin.
+Yellyfin is an open-source Android TV client for Jellyfin. It aims to provide a different app UI that's inspired by Plex for users interested in migrating to Jellyfin.
 
-This is not a fork of the [official client](https://github.com/jellyfin/jellyfin-androidtv). Wholphin's user interface and controls have been written completely from scratch. Wholphin supports playing media using either ExoPlayer or MPV.
+This is not a fork of the [official client](https://github.com/jellyfin/jellyfin-androidtv). Yellyfin's user interface and controls have been written completely from scratch. Yellyfin supports playing media using either ExoPlayer or MPV.
 
 <p align="center">
-<a href="https://github.com/damontecres/Wholphin/releases">
-<img alt="Current Release" src="https://img.shields.io/github/release/damontecres/wholphin.svg"/>
+<a href="https://github.com/jankoran90/Yellyfin/releases">
+<img alt="Current Release" src="https://img.shields.io/github/release/jankoran90/yellyfin.svg"/>
 </a>
-<a href="https://translate.codeberg.org/engage/wholphin/">
-<img src="https://translate.codeberg.org/widget/wholphin/wholphin/svg-badge.svg" alt="Translation status" />
+<a href="https://translate.codeberg.org/engage/yellyfin/">
+<img src="https://translate.codeberg.org/widget/yellyfin/yellyfin/svg-badge.svg" alt="Translation status" />
 </a>
 <br/>
-<a href="https://play.google.com/store/apps/details?id=com.github.damontecres.wholphin">
-<img width="180" alt="Get Wholphin on Google Play" src="https://github.com/user-attachments/assets/2550a4cb-ce46-47a1-ae24-f33a169234b7"/>
+<a href="https://play.google.com/store/apps/details?id=com.github.jankoran90.yellyfin">
+<img width="180" alt="Get Yellyfin on Google Play" src="https://github.com/user-attachments/assets/2550a4cb-ce46-47a1-ae24-f33a169234b7"/>
 </a>
-<a href="https://www.amazon.com/gp/product/B0G8RQQR9T/ref=mas_pm_wholphin">
-<img width="180" alt="Get Wholphin on Amazon AppStore" src="https://github.com/user-attachments/assets/1f3a3b26-4b4f-44b1-9741-f4c895c8a53b"/>
+<a href="https://www.amazon.com/gp/product/B0G8RQQR9T/ref=mas_pm_yellyfin">
+<img width="180" alt="Get Yellyfin on Amazon AppStore" src="https://github.com/user-attachments/assets/1f3a3b26-4b4f-44b1-9741-f4c895c8a53b"/>
 </a>
 
 
@@ -37,7 +37,7 @@ This is not a fork of the [official client](https://github.com/jellyfin/jellyfin
     - Remove series from next up
 - A navigation drawer for quick access to libraries, favorites, search, and settings from almost anywhere in the app
 - Integration with [Seerr](https://github.com/seerr-team/seerr) to discover new movies and TV shows
-    - Note: only available when installed from [GitHub](https://github.com/damontecres/Wholphin/releases/latest) or the [Play store](https://play.google.com/store/apps/details?id=com.github.damontecres.wholphin)
+    - Note: only available when installed from [GitHub](https://github.com/jankoran90/Yellyfin/releases/latest) or the [Play store](https://play.google.com/store/apps/details?id=com.github.jankoran90.yellyfin)
 - Customize library display
   - Option to show Movie/TV Show titles
   - Choose image types & size
@@ -69,11 +69,11 @@ This is not a fork of the [official client](https://github.com/jellyfin/jellyfin
 
 ### Roadmap
 
-See [here for the roadmap](https://github.com/damontecres/Wholphin/wiki#roadmap)
+See [here for the roadmap](https://github.com/jankoran90/Yellyfin/wiki#roadmap)
 
 ## Installation
 
-Using [Google Play](https://play.google.com/store/apps/details?id=com.github.damontecres.wholphin) or [Amazon appstore](https://www.amazon.com/gp/product/B0G8RQQR9T/ref=mas_pm_wholphin) are the fastest way to install. But you can follow these instructions to install without needing an app store
+Using [Google Play](https://play.google.com/store/apps/details?id=com.github.jankoran90.yellyfin) or [Amazon appstore](https://www.amazon.com/gp/product/B0G8RQQR9T/ref=mas_pm_yellyfin) are the fastest way to install. But you can follow these instructions to install without needing an app store
 
 Downloader Code: `8668671`
 
@@ -84,7 +84,7 @@ Downloader Code: `8668671`
     - https://www.aftvnews.com/how-to-enable-apps-from-unknown-sources-on-an-amazon-fire-tv-or-fire-tv-stick/
 2. Install the APK on your Android TV device with one of these options:
     - Install a browser program such as [Downloader](https://www.aftvnews.com/downloader/), use it to get the latest apk with short code `8668671` or URL: http://aftv.news/8668671
-    - Download the latest APK release from the [releases page](https://github.com/damontecres/Wholphin/releases/latest) or http://aftv.news/8668671
+    - Download the latest APK release from the [releases page](https://github.com/jankoran90/Yellyfin/releases/latest) or http://aftv.news/8668671
         - Put the APK on an SD Card/USB stick/network share and use a file manager app from the Google Play Store / Amazon AppStore (e.g. `FX File Explorer`). Android's preinstalled file manager probably will not work!
         - Use `Send files to TV` from the Google Play Store on your phone & TV
         - (Expert) Use [ADB](https://developer.android.com/studio/command-line/adb) to install the APK from your computer ([guide](https://fossbytes.com/side-load-apps-android-tv/#h-how-to-sideload-apps-on-your-android-tv-using-adb))
@@ -111,7 +111,7 @@ Issues and pull requests are always welcome! Please check before submitting that
 
 If you plan to contribute, please read the [contributing guide](CONTRIBUTING.md)!
 
-You can [help translate Wholphin](https://translate.codeberg.org/engage/wholphin/)!
+You can [help translate Yellyfin](https://translate.codeberg.org/engage/yellyfin/)!
 
 ## Acknowledgements
 

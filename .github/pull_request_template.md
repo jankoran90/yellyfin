@@ -1,4 +1,4 @@
-<!-- By submitting this pull request, you acknowledge that you have read the [contributing guide](https://github.com/damontecres/Wholphin/blob/main/CONTRIBUTING.md, including the AI/LLM policy, and [developer's guide](https://github.com/damontecres/Wholphin/blob/main/DEVELOPMENT.md) -->
+<!-- By submitting this pull request, you acknowledge that you have read the [contributing guide](https://github.com/jankoran90/Yellyfin/blob/main/CONTRIBUTING.md, including the AI/LLM policy, and [developer's guide](https://github.com/jankoran90/Yellyfin/blob/main/DEVELOPMENT.md) -->
 
 ## Description
 <!-- Describe the changes in detail -->

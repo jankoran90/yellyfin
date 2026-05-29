@@ -17,15 +17,15 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         @Suppress("ktlint:standard:property-naming")
-        val WholphinExtensionsUsername: String? by settings
-        if (!WholphinExtensionsUsername.isNullOrBlank()) {
-            maven("https://maven.pkg.github.com/damontecres/wholphin-extensions") {
-                name = "WholphinExtensions"
+        val YellyfinExtensionsUsername: String? by settings
+        if (!YellyfinExtensionsUsername.isNullOrBlank()) {
+            maven("https://maven.pkg.github.com/jankoran90/yellyfin-extensions") {
+                name = "YellyfinExtensions"
                 credentials(PasswordCredentials::class)
             }
         }
     }
 }
 
-rootProject.name = "Wholphin"
+rootProject.name = "Yellyfin"
 include(":app")

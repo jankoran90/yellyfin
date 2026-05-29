@@ -24,8 +24,8 @@ val isCI = if (System.getenv("CI") != null) System.getenv("CI").toBoolean() else
 val shouldSign = isCI && System.getenv("KEY_ALIAS") != null
 val ffmpegModuleExists = project.file("libs/lib-decoder-ffmpeg-release.aar").exists()
 val av1ModuleExists = project.file("libs/lib-decoder-av1-release.aar").exists()
-val mpvModuleExists = project.file("libs/wholphin-mpv-release.aar").exists()
-val extensionsRepoActive = project.hasProperty("WholphinExtensionsUsername")
+val mpvModuleExists = project.file("libs/yellyfin-mpv-release.aar").exists()
+val extensionsRepoActive = project.hasProperty("YellyfinExtensionsUsername")
 
 // See https://issuetracker.google.com/issues/402800800
 val isBuildingBundle =
@@ -54,16 +54,16 @@ kotlin {
 }
 
 configure<ApplicationExtension> {
-    namespace = "com.github.damontecres.wholphin"
+    namespace = "com.github.jankoran90.yellyfin"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.github.damontecres.wholphin"
+        applicationId = "com.github.jankoran90.yellyfin"
         minSdk = 23
         targetSdk = 36
         versionCode = gitTags.trim().lines().size
         versionName = gitDescribe.trim().removePrefix("v").ifBlank { "0.0.0" }
-        testInstrumentationRunner = "com.github.damontecres.wholphin.test.WholphinTestRunner"
+        testInstrumentationRunner = "com.github.jankoran90.yellyfin.test.YellyfinTestRunner"
 
         buildConfigField("long", "BUILD_TIME", System.currentTimeMillis().toString())
     }
@@ -172,7 +172,7 @@ configure<ApplicationExtension> {
     }
     packaging {
         jniLibs {
-            // Work around because libass-android & wholphin-mpv both (incorrectly) package libc++_shared.so
+            // Work around because libass-android & yellyfin-mpv both (incorrectly) package libc++_shared.so
             pickFirsts += "lib/*/libc++_shared.so"
         }
     }
@@ -207,7 +207,7 @@ androidComponents {
                         .getFilter(FilterConfiguration.FilterType.ABI)
                         .let { if (it != null) "-${it.identifier}" else "" }
                 val outputFileName =
-                    "Wholphin-${variant.flavorName}-${variant.buildType}-${output.versionName.get()}-${output.versionCode.get()}$abi.apk"
+                    "Yellyfin-${variant.flavorName}-${variant.buildType}-${output.versionName.get()}-${output.versionCode.get()}$abi.apk"
                 output.outputFileName = outputFileName
             }
     }
@@ -251,11 +251,11 @@ openApiGenerate {
     inputSpec.set("$projectDir/src/main/seerr/seerr-api.yml")
     templateDir.set("$projectDir/src/main/seerr/templates")
     outputDir.set("$buildDir/generated/seerr_api")
-    apiPackage.set("com.github.damontecres.wholphin.api.seerr")
-    modelPackage.set("com.github.damontecres.wholphin.api.seerr.model")
-    groupId.set("com.github.damontecres.wholphin.api.seerr")
+    apiPackage.set("com.github.jankoran90.yellyfin.api.seerr")
+    modelPackage.set("com.github.jankoran90.yellyfin.api.seerr.model")
+    groupId.set("com.github.jankoran90.yellyfin.api.seerr")
     id.set("seerr-api")
-    packageName.set("com.github.damontecres.wholphin.api.seerr")
+    packageName.set("com.github.jankoran90.yellyfin.api.seerr")
     additionalProperties.apply {
         put("serializationLibrary", "kotlinx_serialization")
         put("sortModelPropertiesByRequiredFlag", true)
@@ -362,7 +362,7 @@ dependencies {
         implementation(files("libs/lib-decoder-ffmpeg-release.aar"))
     } else if (extensionsRepoActive) {
         logger.info("Using prebuilt ffmpeg decoder")
-        implementation(libs.wholphin.extensions.ffmpeg)
+        implementation(libs.yellyfin.extensions.ffmpeg)
     } else {
         logger.warn("Media3 ffmpeg decoder was NOT found")
     }
@@ -371,16 +371,16 @@ dependencies {
         implementation(files("libs/lib-decoder-av1-release.aar"))
     } else if (extensionsRepoActive) {
         logger.info("Using prebuilt av1 decoder")
-        implementation(libs.wholphin.extensions.av1)
+        implementation(libs.yellyfin.extensions.av1)
     } else {
         logger.warn("Media3 av1 decoder was NOT found")
     }
     if (mpvModuleExists) {
         logger.info("Using local libMPV build")
-        implementation(files("libs/wholphin-mpv-release.aar"))
+        implementation(files("libs/yellyfin-mpv-release.aar"))
     } else if (extensionsRepoActive) {
         logger.info("Using prebuilt libMPV")
-        implementation(libs.wholphin.extensions.mpv)
+        implementation(libs.yellyfin.extensions.mpv)
     } else {
         logger.warn("libMPV was NOT found")
     }

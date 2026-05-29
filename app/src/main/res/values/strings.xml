@@ -808,7 +808,7 @@
     <string name="continue_watching_click_behavior">Continue watching/Next up click behavior</string>
     <string name="continue_watching_click_summary_on">Play on click</string>
     <string name="continue_watching_click_summary_off">Show details on click</string>
-    <string name="hide_watched_recently_added">Hide watched in Recently Added</string>
+    <string name="hide_unwatched_recently_added">Hide unwatched in Recently Added</string>
     <string name="library_tiles">Library tiles</string>
     <string name="libraries">Libraries</string>
     <array name="ass_subtitle_modes">

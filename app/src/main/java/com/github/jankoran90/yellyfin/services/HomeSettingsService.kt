@@ -783,7 +783,7 @@ class HomeSettingsService
                             parentId = row.parentId,
                             groupItems = true,
                             limit = limit,
-                            isPlayed = if (prefs.hideWatchedRecentlyAdded) false else null,
+                            isPlayed = if (prefs.hideUnwatchedRecentlyAdded) true else null,
                         )
                     val latest =
                         api.userLibraryApi

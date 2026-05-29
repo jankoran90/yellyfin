@@ -125,9 +125,7 @@ private fun SwitchServerContentInternal(
             ) {
                 val focusRequester = remember { FocusRequester() }
                 val firstServerFocus = remember { FocusRequester() }
-                if (state.servers.isNotEmpty()) {
-                    LaunchedEffect(Unit) { focusRequester.tryRequestFocus() }
-                }
+                LaunchedEffect(Unit) { focusRequester.tryRequestFocus() }
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(24.dp),
                     contentPadding = PaddingValues(horizontal = 48.dp, vertical = 16.dp),

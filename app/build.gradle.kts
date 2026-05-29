@@ -25,7 +25,8 @@ val shouldSign = isCI && System.getenv("KEY_ALIAS") != null
 val ffmpegModuleExists = project.file("libs/lib-decoder-ffmpeg-release.aar").exists()
 val av1ModuleExists = project.file("libs/lib-decoder-av1-release.aar").exists()
 val mpvModuleExists = project.file("libs/yellyfin-mpv-release.aar").exists()
-val extensionsRepoActive = project.hasProperty("YellyfinExtensionsUsername")
+val extensionsRepoActive = project.hasProperty("YellyfinExtensionsUsername") &&
+    project.property("YellyfinExtensionsUsername").toString().isNotBlank()
 
 // See https://issuetracker.google.com/issues/402800800
 val isBuildingBundle =

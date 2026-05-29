@@ -7,15 +7,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 object HeaderUtils {
-    val topPadding = 48.dp
-    val bottomPadding = 32.dp
+    val topPadding = 8.dp
+    val bottomPadding = 8.dp
     val startPadding = 8.dp
 
     val padding = PaddingValues(top = topPadding, bottom = bottomPadding, start = startPadding)
 
-    val height = 180.dp
+    val height = 160.dp
 
-    val logoHeight = 60.dp
+    val logoHeight = 48.dp
 
     val modifier =
         Modifier

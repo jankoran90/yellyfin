@@ -1,7 +1,10 @@
 package com.github.jankoran90.yellyfin.ui.setup
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -183,6 +186,7 @@ fun UserList(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun UserIconCard(
     user: JellyfinUserAndImage,
@@ -192,17 +196,17 @@ private fun UserIconCard(
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-    // Generate unique color for this user
     val userColor = rememberIdColor(user.user.id)
-
-    // Track image loading errors
     var imageError by remember { mutableStateOf(false) }
-
-    // Card dimensions - circular card
     val cardSize = Cards.serverUserCircle
 
     Column(
-        modifier = modifier,
+        modifier = modifier.combinedClickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = onClick,
+            onLongClick = onLongClick,
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
@@ -369,11 +373,14 @@ private fun AddUserCard(
     val cardSize = Cards.height2x3 * 0.75f // ~120dp
 
     Column(
-        modifier = modifier,
+        modifier = modifier.clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = onClick,
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(24.dp), // Increased to accommodate 20% scale
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        // Circular card with colored background
         Surface(
             onClick = onClick,
             interactionSource = interactionSource,

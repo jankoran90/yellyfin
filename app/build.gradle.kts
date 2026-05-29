@@ -271,13 +271,6 @@ tasks.named("preBuild") {
     dependsOn.add(tasks.named("openApiGenerate"))
 }
 
-// Ensure proto-generated Java sources are compiled before KSP runs Hilt processing
-afterEvaluate {
-    tasks.matching { it.name.startsWith("ksp") }.configureEach {
-        dependsOn(tasks.matching { it.name.startsWith("generate") && it.name.endsWith("Proto") })
-    }
-}
-
 ksp {
     arg("correctErrorTypes", "true")
 }

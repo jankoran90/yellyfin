@@ -193,6 +193,17 @@ sealed interface HomeRowConfig {
     ) : HomeRowConfig {
         override fun updateViewOptions(viewOptions: HomeRowViewOptions): GetItems = this.copy(viewOptions = viewOptions)
     }
+
+    /**
+     * Row of library tiles — one tile per user library, tapping navigates into the library
+     */
+    @Serializable
+    @SerialName("LibraryTiles")
+    data class LibraryTiles(
+        override val viewOptions: HomeRowViewOptions = HomeRowViewOptions.libraryTilesDefault,
+    ) : HomeRowConfig {
+        override fun updateViewOptions(viewOptions: HomeRowViewOptions): LibraryTiles = this.copy(viewOptions = viewOptions)
+    }
 }
 
 /**
@@ -246,6 +257,14 @@ data class HomeRowViewOptions(
                 heightDp = 96,
                 aspectRatio = AspectRatio.WIDE,
                 contentScale = PrefContentScale.FIT,
+            )
+
+        val libraryTilesDefault =
+            HomeRowViewOptions(
+                heightDp = Cards.HEIGHT_EPISODE,
+                aspectRatio = AspectRatio.WIDE,
+                imageType = ViewOptionImageType.THUMB,
+                showTitles = true,
             )
     }
 }

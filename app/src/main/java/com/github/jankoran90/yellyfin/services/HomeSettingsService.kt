@@ -10,6 +10,7 @@ import com.github.jankoran90.yellyfin.data.model.HomeRowConfig
 import com.github.jankoran90.yellyfin.data.model.SUPPORTED_HOME_PAGE_SETTINGS_VERSION
 import com.github.jankoran90.yellyfin.data.model.createGenreDestination
 import com.github.jankoran90.yellyfin.data.model.createStudioDestination
+import com.github.jankoran90.yellyfin.ui.nav.Destination
 import com.github.jankoran90.yellyfin.preferences.DefaultUserConfiguration
 import com.github.jankoran90.yellyfin.preferences.HomePagePreferences
 import com.github.jankoran90.yellyfin.ui.DefaultItemFields
@@ -292,6 +293,12 @@ class HomeSettingsService
                             )
                         }
                     }
+            val libraryTilesRow =
+                HomeRowConfigDisplay(
+                    id = includedIds.size + 2,
+                    title = ResStringProvider(R.string.libraries),
+                    config = HomeRowConfig.LibraryTiles(),
+                )
             val continueWatchingRow =
                 listOf(
                     HomeRowConfigDisplay(
@@ -300,7 +307,7 @@ class HomeSettingsService
                         config = HomeRowConfig.ContinueWatchingCombined(),
                     ),
                 )
-            val rowConfig = continueWatchingRow + includedIds
+            val rowConfig = listOf(libraryTilesRow) + continueWatchingRow + includedIds
             return HomePageResolvedSettings(rowConfig)
         }
 
@@ -541,6 +548,14 @@ class HomeSettingsService
                         config,
                     )
                 }
+
+                is HomeRowConfig.LibraryTiles -> {
+                    HomeRowConfigDisplay(
+                        id = id,
+                        title = ResStringProvider(R.string.libraries),
+                        config,
+                    )
+                }
             }
 
         private suspend fun getItemName(
@@ -768,7 +783,7 @@ class HomeSettingsService
                             parentId = row.parentId,
                             groupItems = true,
                             limit = limit,
-                            isPlayed = null, // Server will handle user's preference
+                            isPlayed = if (prefs.hideWatchedRecentlyAdded) false else null,
                         )
                     val latest =
                         api.userLibraryApi
@@ -784,6 +799,35 @@ class HomeSettingsService
                                 )
                             }
                     latest
+                }
+
+                is HomeRowConfig.LibraryTiles -> {
+                    val views =
+                        api.userViewsApi
+                            .getUserViews(userId = userDto.id)
+                            .content.items
+                    val libraryMap = libraries.associateBy { it.itemId }
+                    val items =
+                        views.map { dto ->
+                            val lib = libraryMap[dto.id]
+                            val destination =
+                                if (lib?.isRecordingFolder == true) {
+                                    Destination.Recordings(dto.id)
+                                } else {
+                                    Destination.MediaItem(
+                                        dto.id,
+                                        dto.type ?: BaseItemKind.COLLECTION_FOLDER,
+                                        dto.collectionType,
+                                    )
+                                }
+                            BaseItem(dto, false, destinationOverride = destination)
+                        }
+                    Success(
+                        ResStringProvider(R.string.libraries),
+                        items,
+                        row.viewOptions,
+                        rowType = row,
+                    )
                 }
 
                 is HomeRowConfig.RecentlyReleased -> {

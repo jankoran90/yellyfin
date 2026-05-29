@@ -20,6 +20,7 @@ import com.github.jankoran90.yellyfin.data.model.HomeRowConfig.RecentlyReleased
 import com.github.jankoran90.yellyfin.data.model.HomeRowConfig.Suggestions
 import com.github.jankoran90.yellyfin.data.model.HomeRowConfig.TvChannels
 import com.github.jankoran90.yellyfin.data.model.HomeRowConfig.TvPrograms
+import com.github.jankoran90.yellyfin.data.model.HomeRowConfig.LibraryTiles
 import com.github.jankoran90.yellyfin.data.model.HomeRowViewOptions
 import com.github.jankoran90.yellyfin.data.model.SUPPORTED_HOME_PAGE_SETTINGS_VERSION
 import com.github.jankoran90.yellyfin.preferences.AppPreferences
@@ -253,6 +254,14 @@ class HomeSettingsViewModel
                         MetaRowType.PLAYLIST,
                         -> {
                             throw IllegalArgumentException("Should use a different addRow() instead")
+                        }
+
+                        MetaRowType.LIBRARY_TILES -> {
+                            HomeRowConfigDisplay(
+                                id = id,
+                                title = ResStringProvider(R.string.libraries),
+                                config = LibraryTiles(),
+                            )
                         }
 
                         MetaRowType.DISCOVER -> {

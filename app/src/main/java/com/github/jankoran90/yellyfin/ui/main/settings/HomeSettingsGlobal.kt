@@ -106,6 +106,18 @@ fun HomeSettingsGlobal(
                     modifier = Modifier,
                 )
             }
+            item {
+                ComposablePreference(
+                    preference = AppPreference.HideWatchedRecentlyAdded,
+                    value = AppPreference.HideWatchedRecentlyAdded.getter.invoke(preferences),
+                    onValueChange = {
+                        val newPrefs = AppPreference.HideWatchedRecentlyAdded.setter.invoke(preferences, it)
+                        onPreferenceChange.invoke(newPrefs)
+                    },
+                    onNavigate = {},
+                    modifier = Modifier,
+                )
+            }
             item { HorizontalDivider() }
             item {
                 HomeSettingsListItem(

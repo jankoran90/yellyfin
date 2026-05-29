@@ -226,6 +226,18 @@ sealed interface AppPreference<Pref, T> {
                 summaryOff = R.string.continue_watching_click_summary_off,
             )
 
+        val HideWatchedRecentlyAdded =
+            AppSwitchPreference<AppPreferences>(
+                title = R.string.hide_watched_recently_added,
+                defaultValue = false,
+                getter = { it.homePagePreferences.hideWatchedRecentlyAdded },
+                setter = { prefs, value ->
+                    prefs.updateHomePagePreferences { hideWatchedRecentlyAdded = value }
+                },
+                summaryOn = R.string.enabled,
+                summaryOff = R.string.disabled,
+            )
+
         val PlayThemeMusic =
             AppChoicePreference<AppPreferences, ThemeSongVolume>(
                 title = R.string.play_theme_music,

@@ -772,6 +772,10 @@ class HomeSettingsViewModel
                                 is HomeRowConfig.TvChannels -> {
                                     it.config.updateViewOptions(preset.liveTv)
                                 }
+
+                                is HomeRowConfig.LibraryTiles -> {
+                                    it.config
+                                }
                             }
                         it.copy(config = newConfig)
                     }

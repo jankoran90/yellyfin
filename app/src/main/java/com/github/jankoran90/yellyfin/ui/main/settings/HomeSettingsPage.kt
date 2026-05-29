@@ -169,6 +169,10 @@ fun HomeSettingsPage(
                                             MetaRowType.PLAYLIST -> {
                                                 searchForDialog = BaseItemKind.PLAYLIST
                                             }
+
+                                            MetaRowType.LIBRARY_TILES -> {
+                                                addRow { viewModel.addRow(it) }
+                                            }
                                         }
                                     },
                                     modifier = destModifier,

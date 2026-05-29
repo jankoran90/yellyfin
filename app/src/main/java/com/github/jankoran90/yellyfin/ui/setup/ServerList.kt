@@ -1,6 +1,9 @@
 package com.github.jankoran90.yellyfin.ui.setup
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -94,6 +97,7 @@ fun rememberIdColor(
 /**
  * Server icon card component - displays a circular card with server name/letter
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ServerIconCard(
     server: JellyfinServer,
@@ -121,7 +125,12 @@ fun ServerIconCard(
         }
 
     Column(
-        modifier = modifier,
+        modifier = modifier.combinedClickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = onClick,
+            onLongClick = if (allowDelete) onLongClick else null,
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
@@ -248,7 +257,11 @@ fun AddServerCard(
     val cardSize = Cards.height2x3 * 0.75f // ~120dp
 
     Column(
-        modifier = modifier,
+        modifier = modifier.clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = onClick,
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {

@@ -19,8 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,12 +30,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
+import androidx.tv.material3.Border
 import androidx.tv.material3.Card
 import androidx.tv.material3.CardDefaults
 import androidx.tv.material3.Icon
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
-import androidx.tv.material3.surfaceColorAtElevation
 import com.github.jankoran90.yellyfin.R
 import com.github.jankoran90.yellyfin.ui.AspectRatio
 import com.github.jankoran90.yellyfin.ui.Cards
@@ -92,7 +94,17 @@ fun ViewMoreCard(
             interactionSource = interactionSource,
             colors =
                 CardDefaults.colors(
-                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp),
+                    containerColor = Color.Transparent,
+                    focusedContainerColor = Color.Transparent,
+                ),
+            border =
+                CardDefaults.border(
+                    border = Border(
+                        border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.border.copy(alpha = 0.5f)),
+                    ),
+                    focusedBorder = Border(
+                        border = BorderStroke(2.dp, MaterialTheme.colorScheme.border),
+                    ),
                 ),
         ) {
             Box {

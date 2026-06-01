@@ -146,6 +146,7 @@ fun sliderActiveColor(focused: Boolean): Color {
         AppThemeColors.BLUE,
         AppThemeColors.GREEN,
         AppThemeColors.ORANGE,
+        AppThemeColors.AMBER,
         -> {
             MaterialTheme.colorScheme.border
         }
@@ -188,6 +189,7 @@ fun sliderInactiveColor(focused: Boolean): Color {
         AppThemeColors.GREEN,
         AppThemeColors.ORANGE,
         AppThemeColors.BOLD_BLUE,
+        AppThemeColors.AMBER,
         -> {
             MaterialTheme.colorScheme.secondaryContainer.copy(alpha = .66f)
         }

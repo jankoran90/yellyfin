@@ -37,6 +37,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -702,6 +703,12 @@ fun NavigationDrawerScope.NavItem(
             }
         }
     val focused by interactionSource.collectIsFocusedAsState()
+    LaunchedEffect(focused) {
+        if (focused && library !is NavDrawerItem.More) {
+            delay(200)
+            if (focused) onClick()
+        }
+    }
     NavigationDrawerItem(
         modifier = modifier,
         selected = false,

@@ -5,6 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.tv.material3.MaterialTheme
 import com.github.jankoran90.yellyfin.preferences.AppThemeColors
+import com.github.jankoran90.yellyfin.ui.theme.colors.AmberThemeColors
 import com.github.jankoran90.yellyfin.ui.theme.colors.BlueThemeColors
 import com.github.jankoran90.yellyfin.ui.theme.colors.BoldBlueThemeColors
 import com.github.jankoran90.yellyfin.ui.theme.colors.GreenThemeColors
@@ -23,6 +24,7 @@ fun getThemeColors(appThemeColors: AppThemeColors): ThemeColors =
         AppThemeColors.ORANGE -> OrangeThemeColors
         AppThemeColors.OLED_BLACK -> OledThemeColors
         AppThemeColors.BOLD_BLUE -> BoldBlueThemeColors
+        AppThemeColors.AMBER -> AmberThemeColors
         AppThemeColors.UNRECOGNIZED -> PurpleThemeColors
     }
 

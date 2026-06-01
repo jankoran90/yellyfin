@@ -205,9 +205,16 @@ fun HomePage(
             val onClickViewMore =
                 remember {
                     { _: RowColumn, row: HomeRowLoadingState.Success ->
-                        viewModel.navigationManager.navigateTo(
-                            Destination.MoreHomeRow(row.title, row.rowType!!, row.items.size),
-                        )
+                        val config = row.rowType!!
+                        if (config is HomeRowConfig.RecentlyAdded) {
+                            viewModel.navigationManager.navigateTo(
+                                Destination.MediaItem(config.parentId, BaseItemKind.COLLECTION_FOLDER),
+                            )
+                        } else {
+                            viewModel.navigationManager.navigateTo(
+                                Destination.MoreHomeRow(row.title, config, row.items.size),
+                            )
+                        }
                     }
                 }
 

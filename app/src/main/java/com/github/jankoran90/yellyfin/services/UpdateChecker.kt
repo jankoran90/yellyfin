@@ -414,6 +414,7 @@ fun getDownloadUrl(
     val preferredNames =
         buildList {
             add("$ASSET_NAME${releaseSuffix}$abiSuffix.apk")
+            add("$ASSET_NAME$abiSuffix.apk")
             add("$ASSET_NAME$releaseSuffix.apk")
             if (!debug) add("$ASSET_NAME.apk")
         }

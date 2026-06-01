@@ -71,7 +71,10 @@ fun Button(
     border: ClickableSurfaceBorder =
         ClickableSurfaceDefaults.border(
             border = Border.None,
-            focusedBorder = Border.None,
+            focusedBorder = Border(
+                border = BorderStroke(2.dp, MaterialTheme.colorScheme.border),
+                shape = CircleShape,
+            ),
             pressedBorder = Border.None,
             disabledBorder = Border.None,
             focusedDisabledBorder =

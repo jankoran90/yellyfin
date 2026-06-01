@@ -206,9 +206,18 @@ fun HomePage(
                 remember {
                     { _: RowColumn, row: HomeRowLoadingState.Success ->
                         val config = row.rowType!!
-                        if (config is HomeRowConfig.RecentlyAdded) {
+                        val parentId = when (config) {
+                            is HomeRowConfig.RecentlyAdded -> config.parentId
+                            is HomeRowConfig.RecentlyReleased -> config.parentId
+                            is HomeRowConfig.Genres -> config.parentId
+                            is HomeRowConfig.Studios -> config.parentId
+                            is HomeRowConfig.Suggestions -> config.parentId
+                            is HomeRowConfig.ByParent -> config.parentId
+                            else -> null
+                        }
+                        if (parentId != null) {
                             viewModel.navigationManager.navigateTo(
-                                Destination.MediaItem(config.parentId, BaseItemKind.COLLECTION_FOLDER),
+                                Destination.MediaItem(parentId, BaseItemKind.COLLECTION_FOLDER),
                             )
                         } else {
                             viewModel.navigationManager.navigateTo(
